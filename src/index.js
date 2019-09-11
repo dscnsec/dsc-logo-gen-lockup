@@ -106,14 +106,14 @@ class App extends Component {
         this.logoCanvas.setAttribute("height", canvasHeight * scale);
 
         ctx.scale(scale, scale);
-        ctx.font = `94px "Product Sans Light"`;
+        ctx.font = `94px "Product Sans"`;
         ctx.fillStyle = "rgba(0, 0, 0, 0.54)";
 
         ctx.drawImage(this.dscLogo, 20, 0, this.dscLogo.width, this.dscLogo.height);
 
         ctx.fillText("Developer Student Clubs ", this.dscLogo.width + 40, 110);
 
-        ctx.font = `64px "Product Sans Light"`;
+        ctx.font = `64px "Product Sans"`;
         ctx.fillText(name, this.dscLogo.width + 45, 200);
 
         this.setState({
