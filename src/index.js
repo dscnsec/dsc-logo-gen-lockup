@@ -111,10 +111,10 @@ class App extends Component {
 
         ctx.drawImage(this.dscLogo, 20, 0, this.dscLogo.width, this.dscLogo.height);
 
-        ctx.fillText("Developer Student Clubs ", this.dscLogo.width + 40, 130);
+        ctx.fillText("Developer Student Clubs ", this.dscLogo.width + 40, 110);
 
         ctx.font = `100 64px "Product Sans"`;
-        ctx.fillText(name, this.dscLogo.width + 45, 230);
+        ctx.fillText(name, this.dscLogo.width + 45, 200);
 
         this.setState({
             fullLogoUrl: this.logoCanvas.toDataURL()
