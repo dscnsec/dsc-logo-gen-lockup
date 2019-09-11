@@ -18,6 +18,9 @@ class App extends Component {
         WebFont.load({
             google: {
                 families: ["Roboto:400", "Product Sans"]
+            },
+            fontactive: (familyName, fvd)=>{
+                this.drawImage()
             }
         });
     }
@@ -80,8 +83,11 @@ class App extends Component {
                 </Button>
                 <footer>
                     Made with <span role="img" aria-label="love">❤️ </span> by <a
-                    href="https://twitter.com/shanggyilim">@shanggyilim</a>. <a
+                    href="https://twitter.com/shanggyilim">@shanggyilim</a> • <a
                     href="https://github.com/shangyilim/dsc-logo-generator">GitHub</a>
+                    &nbsp;• Modified also with <span role="img" aria-label="love">❤️ </span>by <a
+                    href="https://github.com/simonpham">@simonpham</a>. <a
+                    href="https://github.com/DSC-Ton-Duc-Thang-University/dsc-logo-generator">GitHub</a>
                 </footer>
             </div>
         );
