@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.4.0",
+    "@material-ui/icons": "^4.4.3",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "serve": "^11.1.0",

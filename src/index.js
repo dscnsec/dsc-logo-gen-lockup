@@ -1,16 +1,34 @@
 import React, { Component } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { render } from "react-dom";
 import WebFont from "webfontloader";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Fab from "@material-ui/core/Fab";
+import ZoomInIcon from "@material-ui/icons/ZoomIn";
+import ZoomOutIcon from "@material-ui/icons/ZoomOut";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Switch from "@material-ui/core/Switch";
+
 import "./style.css";
+
+const useStyles = makeStyles(theme => ({
+  fab: {
+    margin: theme.spacing(1)
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1)
+  }
+}));
 
 class App extends Component {
   constructor() {
     super({});
     this.state = {
       scale: 1,
-      name: "School Name Below"
+      name: "School Name Below",
+      checkedA: false
     };
   }
 
@@ -43,6 +61,9 @@ class App extends Component {
           />
         </div>
         <p>Start editing to see some magic happen :)</p>
+
+        {this.renderThemeSwitch()}
+
         {this.renderScaleButton()}
         <TextField
           label="University"
@@ -67,32 +88,47 @@ class App extends Component {
           }}
         />
 
-        <div className="full-logo-container">
-          <img
-            ref={e => {
-              this.fullLogoImg = e;
-            }}
-            alt={`DSC ${this.state.name} Logo`}
-            src={this.state.fullLogoUrl}
-          />
-        </div>
-        <div className="full-logo-container">
-          <img
-            ref={e => {
-              this.fullLogoImg = e;
-            }}
-            alt={`DSC ${this.state.name} Logo`}
-            src={this.state.fullLogoUrlOld}
-          />
-        </div>
-        <Button
-          variant="contained"
-          color="primary"
-          href={this.state.fullLogoUrl}
-          download={`DSC ${this.state.name} Logo x${this.state.scale}.png`}
-        >
-          SAVE IMAGE
-        </Button>
+        {this.state.checkedA ? (
+          <div className="full-logo-container">
+            <img
+              ref={e => {
+                this.fullLogoImg = e;
+              }}
+              alt={`DSC ${this.state.name} Logo`}
+              src={this.state.fullLogoUrl}
+            />
+          </div>
+        ) : (
+          <div className="full-logo-container">
+            <img
+              ref={e => {
+                this.fullLogoImg = e;
+              }}
+              alt={`DSC ${this.state.name} Logo`}
+              src={this.state.fullLogoUrlOld}
+            />
+          </div>
+        )}
+
+        {this.state.checkedA ? (
+          <Button
+            variant="contained"
+            color="primary"
+            href={this.state.fullLogoUrl}
+            download={`DSC ${this.state.name} Logo x${this.state.scale}.png`}
+          >
+            SAVE IMAGE
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            color="primary"
+            href={this.state.fullLogoUrlOld}
+            download={`DSC ${this.state.name} Logo x${this.state.scale}.png`}
+          >
+            SAVE IMAGE
+          </Button>
+        )}
         {/* <footer>
           Made with{" "}
           <span role="img" aria-label="love">
@@ -178,10 +214,35 @@ class App extends Component {
     });
   }
 
+  renderThemeSwitch() {
+    const handleChange = name => event => {
+      this.setState({ ...this.state, [name]: event.target.checked });
+    };
+    return (
+      <FormGroup row>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={this.state.checkedA}
+              onChange={handleChange("checkedA")}
+              value="checkedA"
+              color="primary"
+            />
+          }
+          label="Dark"
+        />
+      </FormGroup>
+    );
+  }
+
   renderScaleButton() {
     return (
       <div className="scale-button">
-        <button
+        <Fab
+          color="primary"
+          size="small"
+          aria-label="add"
+          className={useStyles.fab}
           onClick={() =>
             this.setState(
               {
@@ -190,14 +251,21 @@ class App extends Component {
               },
               () => {
                 this.drawImage();
+                this.drawImageOld();
               }
             )
           }
         >
-          -
-        </button>
+          <ZoomOutIcon />
+        </Fab>
+
         <span>Scale</span>
-        <button
+
+        <Fab
+          color="primary"
+          size="small"
+          aria-label="add"
+          className={useStyles.fab}
           onClick={() =>
             this.setState(
               {
@@ -206,12 +274,13 @@ class App extends Component {
               },
               () => {
                 this.drawImage();
+                this.drawImageOld();
               }
             )
           }
         >
-          +
-        </button>
+          <ZoomInIcon />
+        </Fab>
       </div>
     );
   }
