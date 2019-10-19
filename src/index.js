@@ -50,17 +50,32 @@ class App extends Component {
     return (
       <div className="main">
         <h1>DSC Lockup Generator</h1>
+
         <div style={hidden}>
-          <img
-            ref={e => {
-              this.dscLogo = e;
-            }}
-            onLoad={() => {
-              this.drawImage();
-            }}
-            src="dsc_icon-01.svg"
-            alt={`DSC Icon`}
-          />
+          {this.state.checkedA ? (
+            <img
+              ref={e => {
+                this.dscLogo = e;
+              }}
+              onLoad={() => {
+                this.drawImage();
+                this.drawImageVertical();
+              }}
+              src="dark_final.svg"
+              alt={`DSC Icon`}
+            />
+          ) : (
+            <img
+              ref={e => {
+                this.dscLogo = e;
+              }}
+              onLoad={() => {
+                this.drawImage();
+              }}
+              src="dsc_icon-01.svg"
+              alt={`DSC Icon`}
+            />
+          )}
         </div>
         <p>Start editing to see some magic happen :)</p>
 
@@ -179,7 +194,7 @@ class App extends Component {
             </Button>
           </div>
         )}
-        {/* <footer>
+        <div>
           Made with{" "}
           <span role="img" aria-label="love">
             ❤️{" "}
@@ -194,7 +209,13 @@ class App extends Component {
           <a href="https://github.com/DSC-Ton-Duc-Thang-University/dsc-logo-generator">
             GitHub
           </a>
-        </footer> */}
+          &nbsp;• Upgraded also with{" "}
+          <span role="img" aria-label="love">
+            ❤️{" "}
+          </span>
+          by <a href="https://github.com/ani4aniket">@ani4aniket</a>.{" "}
+          <a href="https://github.com/dscnsec/dsc-logo-gen-lockup">GitHub</a>
+        </div>
       </div>
     );
   }
@@ -210,7 +231,8 @@ class App extends Component {
       this.dscLogo.width +
       80;
     const canvasHeight = this.dscLogo.height + 80;
-
+    console.log("width", this.dscLogo.width);
+    console.log("height", this.dscLogo.height);
     this.logoCanvas.setAttribute("width", canvasWidth * scale);
     this.logoCanvas.setAttribute("height", canvasHeight * scale);
 
