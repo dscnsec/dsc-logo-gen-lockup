@@ -61,7 +61,7 @@ class App extends Component {
                 this.drawImage();
                 this.drawImageVertical();
               }}
-              src="dark_final.svg"
+              src="untitled.svg"
               alt={`DSC Icon`}
             />
           ) : (
@@ -70,7 +70,8 @@ class App extends Component {
                 this.dscLogo = e;
               }}
               onLoad={() => {
-                this.drawImage();
+                this.drawImageOld();
+                this.drawImageVerticalOld();
               }}
               src="dsc_icon-01.svg"
               alt={`DSC Icon`}
